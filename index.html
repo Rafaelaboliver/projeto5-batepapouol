@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <ul class="layout-message">
+    <div class="layout-message">
         
         <header class="header">
             <img src="./imagens/uol-image.png">
@@ -27,7 +27,7 @@
             </div>
         </header>
 
-       <main class="messages-box">
+       <ul class="messages-box">
             <li class="start-room topic-message"> 
               
                 <p>
@@ -67,14 +67,14 @@
                 </p>
                 
             </li>
-        </main>
+       </ul>
 
         <footer class="bottom-box">
             <input class="type-message" placeholder="Escreva aqui..." type="text" />
-            <span class="direct-icon"><ion-icon name="paper-plane-outline"></ion-icon></span>
+            <span class="direct-icon" onclick="sendMessage(this)"><ion-icon name="paper-plane-outline"></ion-icon></span>
         </footer>
 
-    </ul>
+    </div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="script.js"></script>
