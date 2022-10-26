@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bate-Papo UOL</title>
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" 
+        rel="stylesheet"
+    />
+</head>
+<body>
+
+    <ul class="layout-message">
+        
+        <header class="header">
+            <img src="./imagens/uol-image.png">
+            <div class="user-icon">
+                <ion-icon name="people-sharp"></ion-icon>
+            </div>
+        </header>
+
+       <main class="messages-box">
+            <li class="start-room topic-message"> 
+              
+                <p>
+                    <time>(09:21:45)</time><span class="sender">João </span class="action">entra na sala...
+                </p>
+                
+            </li>
+
+            <li class="public-message topic-message"> 
+              
+                <p>
+                    <time>(09:22:28)</time><span class="sender">João </span> para <span class="receiver">Todos: </span class="message">Bom dia
+                </p>
+                
+            </li>
+
+            <li class="public-message topic-message"> 
+            
+                <p>
+                    <time>(09:22:38)</time><span class="sender">Maria </span> para <span class="receiver">João: </span class="message">Oi João :)
+                </p>
+                
+            </li>
+
+            <li class="private-message topic-message"> 
+                
+                <p>
+                    <time>(09:22:48)</time><span class="sender">João </span> reservadamente <span class="receiver">Maria: </span class="message">Oi gatinha quer tc?
+                </p>
+                
+            </li>
+
+            <li class="end-room topic-message"> 
+              
+                <p>
+                    <time>(09:22:58)</time><span class="sender">Maria </span class="action">sai da sala...
+                </p>
+                
+            </li>
+        </main>
+
+        <footer class="bottom-box">
+            <input class="type-message" placeholder="Escreva aqui..." type="text" />
+            <span class="direct-icon"><ion-icon name="paper-plane-outline"></ion-icon></span>
+        </footer>
+
+    </ul>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
