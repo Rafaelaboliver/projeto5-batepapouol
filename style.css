@@ -1,11 +1,10 @@
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: ivory;
 }
 
 .layout-message{
-    width: 375px;
-    height: 668px;
+    width: 100%;
+    height: 100%;
     margin: auto;
 }
 
@@ -33,25 +32,30 @@ img{
 .header, .bottom-box{
     background-color: #fff;
     display: flex;
-    position: sticky;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
     width: 100%;
     height: 80px;
-    z-index: 10;
+    z-index: 1;
 }
 
 .header{
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.05);
+    top: 0px;
+    left: 0px;
 }
 
 .bottom-box{
     box-shadow: 0px -4px 6px 0px rgba(0, 0, 0, 0.05);
+    bottom: 0px;
+    left: 0px;
 }
 
 .messages-box{
     background-color: #e5e5e5;
-    height: 507px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -61,9 +65,7 @@ time{
     font-weight: 400;
     font-size: 14px;
     color: #aaa;
-    margin-left: 8px;
 }
-
 
 .sender, .receiver{
     font-weight: bold;
@@ -73,8 +75,8 @@ time{
     margin-left: 8px;
 }
 
-.start-room, .public-message, .private-message, .end-room{
-    width: 375px;
+.start-end-room, .public-message, .private-message, .end-room{
+    width: 100%;
     min-height: 40px;
     border-radius: 2px;
     display: flex;
@@ -85,19 +87,17 @@ time{
     font-size: 14px;
     color: #000;
     line-height: 20px;
-}
-
-.start-room{
-    margin-top: 26px;
-}
-
-.start-room, .end-room {
-    background-color: #cdcdcd;
-    
-}
-
-.public-message, .private-message, .end-room{
     margin-top: 4px;
+}
+
+p{
+    width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.start-end-room{
+    background-color: #DCDCDC;
 }
 
 .public-message{
@@ -107,7 +107,6 @@ time{
 .private-message{
     background-color: #ffdede;
 }
-
 
 .type-message{
     width: 300px;

@@ -1,0 +1,39 @@
+ <!--<li class="start-end-room"> 
+              
+            <p>
+                <time>(09:21:45)</time><span class="sender">João </span><span class="action">entra na sala...</span> 
+            </p>
+            
+        </li>
+
+        <li class="public-message"> 
+          
+            <p>
+                <time>(09:22:28)</time><span class="sender">João </span> <span class="action">para </span> <span class="receiver">Todos: </span> <span class="message">Bom dia</span>
+            </p>
+            
+        </li> 
+
+        <li class="public-message"> 
+        
+            <p>
+                <time>(09:22:38)</time><span class="sender">Maria </span> <span class="action">para </span> <span class="receiver">João: </span> <span class="message">Oi João :)</span>
+            </p>
+            
+        </li>
+
+        <li class="private-message"> 
+            
+            <p>
+                <time>(09:22:48)</time><span class="sender">João </span> <span class="action">reservadamente para </span> <span class="receiver">Maria: </span> <span class="message">Oi gatinha quer tc?</span>
+            </p>
+            
+        </li>
+
+        <li class="start-end-room"> 
+          
+            <p>
+                <time>(09:22:58)</time><span class="sender">Maria </span class="action">sai da sala...
+            </p>
+            
+        </li>-->
