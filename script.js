@@ -4,18 +4,22 @@ let chat;
 let message;
 
 function startChat(){
+    //perguntar nome do usuário:
     user = prompt('Qual o seu nome?');
     console.log(user);
 
+    //executar funções:
     userLogin();
     getMessages();
 
+    //atualizar as funções nos tempos que foram determinados:
     setInterval(refreshChat, 5000);
     setInterval(getMessages, 3000);
 };
 
 startChat();
 
+//função responsável por cadastrar o usuário no servidor:
 function userLogin(){
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', {name:user});
     promise.then(loginFinished);
@@ -27,6 +31,7 @@ function loginFinished(done){
     console.log('login done');
 };
 
+//caso o  nome de usuário já exista, informar e solicitar o nome novamente:
 function loginError(promise){
     if(promise.response.status === 400){
         alert('Usuário já existe! Por favor, tente outro nome.');
@@ -44,9 +49,8 @@ function getMessages(){
 
 function addMessage(){
     const messageInformation = document.querySelector('.type-message').value;
-    console.log(messageInformation);
-
-    //estrutura do contém na mensagem
+    
+    //estrutura que deve compor a mensagem
     const sendMessage = {from: user, to: 'Todos', text: messageInformation, type:'message'};
     
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', sendMessage);
@@ -58,17 +62,20 @@ function addMessage(){
 
 function messageDone(sent){
     console.log('the message has been sent');
-    console.log(sent);
 };
 
+
+//função para caso haja erro ao enviar, relogar a tela e iniciar o chat novamente
 function messageError(error){
     console.log('error to sent the message');
-    console.log(error);
+    
+    if(error.status !== 200){
+        window.location.reload(startChat);  
+    };
 };
 
-
+//função para rederizar as mensagens na tela
 function showPublicMessage(awnser){
-    //função para rederizar informações públicas na tela
 
     const messageChat = awnser.data;
     console.log(messageChat);
@@ -84,7 +91,7 @@ function showPublicMessage(awnser){
 
         
         let layoutPublicMessage;
-        
+        //mensagem para todos
         if (publicBox.type === 'message'){
 
             layoutPublicMessage = `
@@ -96,7 +103,7 @@ function showPublicMessage(awnser){
         
                 </li> 
              `;
-
+          //mensagem de entrada e saída da sala  
         } if (publicBox.type === 'status'){
 
             layoutPublicMessage = `
@@ -108,6 +115,7 @@ function showPublicMessage(awnser){
             
                 </li>
             `;
+            //mensagem para alguém em específico
         } if (publicBox.to !== 'Todos') {
             layoutPublicMessage = `
                 <li class="private-message"> 
@@ -122,9 +130,14 @@ function showPublicMessage(awnser){
         
         layoutMessage.innerHTML += layoutPublicMessage;
     };
+
+    //rolagem automática
+    const lastMessageChat = document.querySelector('.messages-box li:last-child');
+    lastMessageChat.scrollIntoView();
     
 };
 
+//função responsável por atualizar o usuário
 function refreshChat(){
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name:user});
     promise.then(refreshDone);
@@ -133,10 +146,8 @@ function refreshChat(){
 
 function refreshDone(done){
     console.log('refresh done');
-    console.log(done);
 };
 
 function refreshError (error){
     console.log('refresh error');
-    console.log(error);
 };
