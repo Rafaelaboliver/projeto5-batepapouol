@@ -1,20 +1,7 @@
-let startEndMessage = [
-    {time:"(09:21:45)", sender:"João ", action:"entra na sala..."},
-    {time:"(09:22:58)", sender:"Maria ", action:"sai da sala..."}
-];
-
-
-let publicMessage = [
-    {time: "(09:22:28)", sender: "João ", action: "para ", receiver: "todos: ", message:"Bom dia"},
-    {time: '(09:22:38)', sender: "Maria ", action: "para ", receiver: "João: ", message:"Oi João :)"}
-];
-console.log(publicMessage);
-
-let privateMessage = [
-    {time: "(09:22:48)", sender: "João ", action: "reservadamente para ", receiver: "Maria: ", message:"Oi gatinha quer tc?"}
-];
 
 let user;
+let chat;
+let message;
 
 function startChat(){
     user = prompt('Qual o seu nome?');
@@ -22,49 +9,62 @@ function startChat(){
 
     userLogin();
     getMessages();
+
+    setInterval(refreshChat, 5000);
+    setInterval(getMessages, 3000);
 };
+
 startChat();
 
 function userLogin(){
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', {name:user});
     promise.then(loginFinished);
     promise.catch(loginError);
+    console.log(promise.catch);
 };
 
 function loginFinished(done){
-    console.log(done);
+    console.log('login done');
 };
 
-function loginError(error){
-    console.log(error);
+function loginError(promise){
+    if(promise.response.status === 400){
+        alert('Usuário já existe! Por favor, tente outro nome.');
+        startChat();
+    };
 };
 
 function getMessages(){
     //função responsável por buscar mensagens do servidor
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-    console.log(promise);
+    console.log('sending requested');
     promise.then(showPublicMessage);
 };
 
 
-/*function addMessage(){
-    //função que recebe a mensgaem escrita pelo user no input e envia para o servidor
-    const timeInformation = document.querySelector('time');
-    const senderInformation = document.querySelector('.sender');
-    const actionInformation = document.querySelector('.action');
-    const receiverInformation = document.querySelector('.receiver');
-    const messageInformation = document.querySelector('.message');
+function addMessage(){
+    const messageInformation = document.querySelector('.type-message').value;
+    console.log(messageInformation);
 
     //estrutura do contém na mensagem
-    const sendMessage = {time: timeInformation, sender: senderInformation, 
-    action: actionInformation, receiver: receiverInformation, message: messageInformation};
+    const sendMessage = {from: user, to: 'Todos', text: messageInformation, type:'message'};
     
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', sendMessage);
-    promise.then(showMessages);
-    //promise.catch(errorMessage);
+    promise.then(messageDone);
+    promise.catch(messageError);
 
 
-}*/
+};
+
+function messageDone(sent){
+    console.log('the message has been sent');
+    console.log(sent);
+};
+
+function messageError(error){
+    console.log('error to sent the message');
+    console.log(error);
+};
 
 
 function showPublicMessage(awnser){
@@ -76,6 +76,8 @@ function showPublicMessage(awnser){
     const layoutMessage = document.querySelector('.messages-box');
     console.log(layoutMessage);
     
+    layoutMessage.innerHTML ='';
+
     for(let i = 0; i < messageChat.length; i++){
 
         let publicBox = messageChat[i];
@@ -121,4 +123,20 @@ function showPublicMessage(awnser){
         layoutMessage.innerHTML += layoutPublicMessage;
     };
     
+};
+
+function refreshChat(){
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name:user});
+    promise.then(refreshDone);
+    promise.catch(refreshError);
+};
+
+function refreshDone(done){
+    console.log('refresh done');
+    console.log(done);
+};
+
+function refreshError (error){
+    console.log('refresh error');
+    console.log(error);
 };
